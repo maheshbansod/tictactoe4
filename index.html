@@ -1,0 +1,56 @@
+<!doctype html>
+<html>
+<head>
+  <title>Tic Tac Toe</title>
+  <link rel="stylesheet" href='style/main.css' />
+  <script src="scripts/canvas_init.js"></script>
+</head>
+<body>
+  <canvas id='game'>
+  </canvas>
+  <canvas id='celebrator'>
+  </canvas>
+  <div class='overlay'></div>
+  <div id='title'>TIC TAC TOE 4</div>
+  <div id="mainmenu" class='menu'>
+    <ul>
+      <li class='button' data-play-type='cpu'>Play against CPU</li>
+      <li class='button' data-play-type='human'>Play against fellow human</li>
+    </ul>
+  </div>
+  <div id='quitmenu' class='menu' style='display: none'>
+    <ul>
+      <li class='button' data-s-type='quit'>Exit</li>
+    </ul>
+  </div>
+  <script>
+
+  function main() {
+    var lis = document.querySelectorAll('li.button')
+    for(var i=0;i<lis.length;i++) {
+      lis[i].addEventListener('click',function(e) {
+        var aimode = 0,canvas = document.querySelector('canvas#game')
+        if(e.target.getAttribute('data-play-type')=='cpu')
+          aimode = 1
+        else aimode = 0
+        document.querySelector('#mainmenu').style='display: none'
+        canvas.style = 'display: block'
+        initCanvas(canvas,aimode)
+      })
+    }
+  }
+
+  document.onreadystatechange = function(){
+    if (document.readyState === "complete") {
+      main()
+    }
+    else {
+      window.onload = function () {
+        main()
+      };
+    };
+  }
+
+  </script>
+</body>
+</html>
